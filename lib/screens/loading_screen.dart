@@ -1,3 +1,5 @@
+import 'package:clima/services/location.dart';
+import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -13,10 +15,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            getLocationData();
+          },
           child: const Text('Get Location'),
         ),
       ),
     );
+  }
+  
+  void getLocationData() async {
+    Location location = Location();
+    await location.getCurrentLocation();
+    print('Latitude:  ${location.latitude}');
+    print('Longitude:  ${location.longitude}');
   }
 }
